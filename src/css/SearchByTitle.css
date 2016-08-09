@@ -1,0 +1,20 @@
+.inputFind{
+  border: 1px dotted #7c4056;
+}
+
+.buttonFind{
+  border: 1px solid #7c4056;
+  color: #7c4056;
+
+}
+
+.buttonFind:hover{
+  border: 1px solid #bc7f96;
+  background: #f9f3f5;
+}
+
+
+.button-flex{
+  display: flex;
+  flex-direction: column;
+}

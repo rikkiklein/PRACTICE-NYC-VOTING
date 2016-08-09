@@ -1,0 +1,23 @@
+.DeleteByTitle{
+  font-family: "Helvetica";
+  text-transform: capitalize;
+  color: #ff6666;
+  color: #407c66;
+  margin-bottom: 5%;
+  padding-bottom: 1.5em;
+}
+
+.inputDel{
+  border: 1px dotted #407c66;
+}
+
+.buttonDel{
+  border: 1px solid #407c66;
+  color: #407c66;
+  background: white;
+}
+
+.buttonDel:hover{
+  border: 1px solid #669684;
+  background: #EBF1EF;
+}

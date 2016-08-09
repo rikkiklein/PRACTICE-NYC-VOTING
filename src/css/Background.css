@@ -1,0 +1,19 @@
+.back{
+  background: url("am-flag1.jpg");
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: top 20% center;
+  height: 40vh;
+}
+
+h5{
+  border-bottom: 2px solid #643c59;
+  width: 50%;
+  margin: 0 auto;
+  text-transform: uppercase;
+  padding-top: 5%;
+  padding-bottom: 2%;
+  color: #643c59;
+  font-size: 2em;
+  margin-bottom: 3%;
+}

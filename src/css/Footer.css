@@ -1,0 +1,10 @@
+.Footer{
+  background: #141E30;
+  color: white;
+  padding: 1em;
+  font-size: .5em;
+  border-top: rgba(255,255,255, .4);
+  margin-top: 5%;
+  font-family: "Helvetica";
+  text-align: center;
+}
