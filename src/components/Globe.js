@@ -30,6 +30,7 @@ class Globe extends Component{
       this.setState({
         response: json
       })
+      console.log("$$ ", this.state.response);
 
       this.calculateDistance();
 
@@ -41,15 +42,16 @@ class Globe extends Component{
     const results = this.state.response;
 
     results.map((res)=>{
-      if(res.location){
-        let long = res.location.coordinates[0];
-        let lat = res.location.coordinates[1];
+      if(res.location_1){
+        console.log(res.location_1);
+        let long = res.location_1.coordinates[0];
+        let lat = res.location_1.coordinates[1];
         const distance = this.Haversine(this.props.globe, lat, long);
-        if(distance < .7){
+        if(distance < 1){
           geoArray.push(res)
         }
         else{
-          console.log("distance is not < 2", distance);
+          console.log("distance is not < .7", distance);
         }
       }
       else{
@@ -73,7 +75,6 @@ class Globe extends Component{
     const radius = 3959;
     const distanceLat = this.calculateDegreesToRadius(Math.abs(APILat - currentLat));
     const distanceLong = this.calculateDegreesToRadius(Math.abs(APILong - currentLong));
-    console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 
     const a = Math.sin(distanceLat/2) * Math.sin(distanceLat/2) +
               Math.cos(this.calculateDegreesToRadius(APILat)) * Math.cos(this.calculateDegreesToRadius(currentLat)) *

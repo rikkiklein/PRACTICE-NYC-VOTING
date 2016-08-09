@@ -4,7 +4,7 @@ export default {
     const fetchSettings = {
       method: 'GET'
     }
-    return fetch('https://data.cityofnewyork.us/resource/86fs-7q39.json', fetchSettings)
+    return fetch('https://data.cityofnewyork.us/resource/w7a6-9xrz.json', fetchSettings)
     .then((response)=>{
       return response.json();
     });
