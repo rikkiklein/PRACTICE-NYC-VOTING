@@ -15,20 +15,11 @@ class Favorite extends Component{
     })
   }
 
-  handleAllClick(event){
-    event.preventDefault();
-    saveWifi.getAll()
-    .then((json) => {
-    console.log("response", json)
-    })
-  }
-
 
   render(){
     return(
       <div>
         <button className="favorite" onClick={this.handleFavClick.bind(this)}>Favorite</button>
-        <button className="favorite" onClick={this.handleAllClick.bind(this)}>All</button>
 
       </div>
     )

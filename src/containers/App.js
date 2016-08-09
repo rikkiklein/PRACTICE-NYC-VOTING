@@ -2,7 +2,7 @@ import React, { Component }   from 'react';
 import Header                 from '../components/Header.js';
 import Footer                 from '../components/Footer.js';
 import Background             from '../components/Background.js';
-
+import Globe                  from '../components/Globe.js'
 import '../css/App.css';
 
 class App extends Component {
@@ -17,33 +17,25 @@ class App extends Component {
   }
 
   geoFindMe() {
+    var here = this;
+    navigator.geolocation.getCurrentPosition(success);
 
-  if (!navigator.geolocation){
-    console.log( "<p>Geolocation is not supported by your browser</p>");
-    return;
+    function success(position) {
+      var innerGlobe={};
+      innerGlobe.lat  = position.coords.latitude;
+      innerGlobe.long = position.coords.longitude;
+      here.setState({
+        globe: {
+          latitude:innerGlobe.lat,
+          longitude: innerGlobe.long
+        }
+      })
+      console.log("this.state.globe", here.state.globe);
+    }
   }
 
-  function success(position) {
-    this.setState({
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude
-    })
-    var latitude  = position.coords.latitude;
-    var longitude = position.coords.longitude;
-
-    console.log('Latitude is ' + latitude + '° <br>Longitude is ' + longitude);
-    console.log("this.state.globe", this.state.globe);
-  };
-
-  function error() {
-    console.log("error");
-  };
-
-  console.log("Locating…");
-
-  navigator.geolocation.getCurrentPosition(success, error);
-}
   render() {
+    console.log(this.state.globe);
     return (
       <div className="App">
         <Background/>
@@ -51,7 +43,8 @@ class App extends Component {
         <div className="home">
           <h1>Where should I vote?!</h1>
           <button className="voteButton" onClick={this.geoFindMe.bind(this)}>Find me the nearest voting booth</button>
-      </div>
+          <Globe globe={this.state.globe}/>
+        </div>
         <Footer>Rikki Rifka Rabinowitz 2016 All Rights Reserved.</Footer>
     </div>
     );
