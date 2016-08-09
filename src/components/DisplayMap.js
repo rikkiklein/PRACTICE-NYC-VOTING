@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import saveWifi from '../util/helper.js';
-import Map      from './Map.js';
 
 class DisplayMap extends Component{
   constructor(props){

@@ -92,7 +92,7 @@ class Globe extends Component{
   render(){
     return(
       <div>
-        <button className="favorite" onClick={this.handleAllClick.bind(this)}>2 All</button>
+        <button className="favorite" onClick={this.handleAllClick.bind(this)}>Find me a hospital near me!</button>
         <DisplayMap geo={this.state.geoResponse} globe={this.props.globe} />
       </div>
     )

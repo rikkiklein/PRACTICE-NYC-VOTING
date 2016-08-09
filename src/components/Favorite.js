@@ -20,7 +20,6 @@ class Favorite extends Component{
     return(
       <div>
         <button className="favorite" onClick={this.handleFavClick.bind(this)}>Favorite</button>
-
       </div>
     )
   }
