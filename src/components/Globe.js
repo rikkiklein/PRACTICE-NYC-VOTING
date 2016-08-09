@@ -37,23 +37,26 @@ class Globe extends Component{
   calculateDistance(){
     var geoArray = [];
     const results = this.state.response;
-    console.log("results$$$$", results);
+
     results.map((res)=>{
-      let long = res.location.coordinates[0];
-      let lat = res.location.coordinates[1];
-      const distance = this.Haversine(this.props.globe, lat, long);
-      //10 mile radius:
-      if(distance < 15){
-        console.log(geoArray, "geo");
-        geoArray.push(res)
-        console.log(geoArray, "geo");
+      console.log("res", res);
+      console.log("res.location", res.location);
+      if(res.location){
+        let long = res.location.coordinates[0];
+        let lat = res.location.coordinates[1];
+        const distance = this.Haversine(this.props.globe, lat, long);
+        if(distance < 15){
+          geoArray.push(res)
+        }
+        else{
+          console.log("distance is not < 2", distance);
+        }
       }
       else{
-        console.log("distance is not < 2", distance);
+        console.log("####res.location", res.location);
       }
 
     })
-    console.log("geo outter");
 
     this.setState({
       geoResponse: geoArray
@@ -69,6 +72,8 @@ class Globe extends Component{
     const radius = 3959;
     const distanceLat = this.calculateDegreesToRadius(Math.abs(APILat - currentLat));
     const distanceLong = this.calculateDegreesToRadius(Math.abs(APILong - currentLong));
+    console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
     const a = Math.sin(distanceLat/2) * Math.sin(distanceLat/2) +
               Math.cos(this.calculateDegreesToRadius(APILat)) * Math.cos(this.calculateDegreesToRadius(currentLat)) *
               Math.sin(distanceLong/2) * Math.sin(distanceLong/2);
@@ -83,7 +88,6 @@ class Globe extends Component{
   }
 
   render(){
-    console.log("this.state", this.state.response);
     return(
       <div>
         <button className="favorite" onClick={this.handleClick.bind(this)}>Get Results</button>
