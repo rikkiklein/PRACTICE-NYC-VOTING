@@ -5,7 +5,8 @@ class Globe extends Component{
   constructor(props){
     super(props);
     this.state ={
-      response: []
+      response: [],
+      geoResponse: []
     }
 
   };
@@ -34,20 +35,30 @@ class Globe extends Component{
   }
 
   calculateDistance(){
-    const geoArray = [];
+    var geoArray = [];
     const results = this.state.response;
+    console.log("results$$$$", results);
     results.map((res)=>{
       let long = res.location.coordinates[0];
       let lat = res.location.coordinates[1];
       const distance = this.Haversine(this.props.globe, lat, long);
       //10 mile radius:
       if(distance < 15){
+        console.log(geoArray, "geo");
         geoArray.push(res)
+        console.log(geoArray, "geo");
       }
       else{
         console.log("distance is not < 2", distance);
       }
+
     })
+    console.log("geo outter");
+
+    this.setState({
+      geoResponse: geoArray
+    })
+    console.log(this.state.geoResponse);
   }
 
   Haversine(globe, lat, long){
@@ -64,7 +75,6 @@ class Globe extends Component{
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     const d = radius * c;
-    console.log(d);
     return d;
 
   }
