@@ -42,7 +42,7 @@ class App extends Component {
         <Header/>
         <div className="home">
           <h1>Where should I vote?!</h1>
-          <button className="voteButton" onClick={this.geoFindMe.bind(this)}>Find me the nearest voting booth</button>
+          <button className="voteButton" onClick={this.geoFindMe.bind(this)}>1 Find me the nearest voting booth</button>
           <Globe globe={this.state.globe}/>
         </div>
         <Footer>Rikki Rifka Rabinowitz 2016 All Rights Reserved.</Footer>

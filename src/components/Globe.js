@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import saveWifi from '../util/helper.js';
+import DisplayMap from './DisplayMap.js';
+
 
 class Globe extends Component{
   constructor(props){
@@ -39,13 +41,11 @@ class Globe extends Component{
     const results = this.state.response;
 
     results.map((res)=>{
-      console.log("res", res);
-      console.log("res.location", res.location);
       if(res.location){
         let long = res.location.coordinates[0];
         let lat = res.location.coordinates[1];
         const distance = this.Haversine(this.props.globe, lat, long);
-        if(distance < 15){
+        if(distance < .7){
           geoArray.push(res)
         }
         else{
@@ -53,15 +53,16 @@ class Globe extends Component{
         }
       }
       else{
-        console.log("####res.location", res.location);
+        console.log("location doesn't exist");
       }
+      console.log("geoArray", geoArray);
 
     })
 
     this.setState({
       geoResponse: geoArray
     })
-    console.log(this.state.geoResponse);
+    console.log("$$$georesponse", this.state.geoResponse);
   }
 
   Haversine(globe, lat, long){
@@ -90,8 +91,8 @@ class Globe extends Component{
   render(){
     return(
       <div>
-        <button className="favorite" onClick={this.handleClick.bind(this)}>Get Results</button>
-        <button className="favorite" onClick={this.handleAllClick.bind(this)}>All</button>
+        <button className="favorite" onClick={this.handleAllClick.bind(this)}>2 All</button>
+        <DisplayMap geo={this.state.geoResponse} />
       </div>
     )
   }
