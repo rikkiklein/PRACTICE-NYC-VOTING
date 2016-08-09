@@ -34,42 +34,43 @@ class Globe extends Component{
   }
 
   calculateDistance(){
+    const geoArray = [];
     const results = this.state.response;
-    console.log("results", results);
     results.map((res)=>{
-      console.log("res", res.location.coordinates);
-      let lat = res.location.coordinates[0];
-      let long = res.location.coordinates[1];
-      console.log("lat", lat, "long", long);
-      this.Haversine(this.props.globe, lat, long)
+      let long = res.location.coordinates[0];
+      let lat = res.location.coordinates[1];
+      const distance = this.Haversine(this.props.globe, lat, long);
+      //10 mile radius:
+      if(distance < 15){
+        geoArray.push(res)
+      }
+      else{
+        console.log("distance is not < 2", distance);
+      }
     })
   }
 
   Haversine(globe, lat, long){
-    console.log("globe in hav", globe);
-    console.log("lat", lat, "long", long);
+    const currentLat = globe.latitude;
+    const currentLong = globe.longitude;
+    const APILat = lat;
+    const APILong = long;
+    const radius = 3959;
+    const distanceLat = this.calculateDegreesToRadius(Math.abs(APILat - currentLat));
+    const distanceLong = this.calculateDegreesToRadius(Math.abs(APILong - currentLong));
+    const a = Math.sin(distanceLat/2) * Math.sin(distanceLat/2) +
+              Math.cos(this.calculateDegreesToRadius(APILat)) * Math.cos(this.calculateDegreesToRadius(currentLat)) *
+              Math.sin(distanceLong/2) * Math.sin(distanceLong/2);
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    const d = radius * c;
+    console.log(d);
+    return d;
+
   }
-
-//
-//   function haversine(lat1,lon1,lat2,lon2) {
-//   var R = 3959; // Radius of the earth in miles
-//   var dLat = deg2rad(lat2-lat1);  // deg2rad below
-//   var dLon = deg2rad(lon2-lon1);
-//   var a =
-//     Math.sin(dLat/2) * Math.sin(dLat/2) +
-//     Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-//     Math.sin(dLon/2) * Math.sin(dLon/2)
-//     ;
-//   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-//   var d = R * c; // Distance in km
-//   console.log(d);
-// }
-// function deg2rad(deg) {
-//   return deg * (Math.PI/180)
-// }
-// haversine(40.740004899999995,-73.9897581,40.728725,-73.978294)
-
-
+  calculateDegreesToRadius(num){
+    return num * (Math.PI/180);
+  }
 
   render(){
     console.log("this.state", this.state.response);
