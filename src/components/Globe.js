@@ -93,7 +93,7 @@ class Globe extends Component{
     return(
       <div>
         <button className="favorite" onClick={this.handleAllClick.bind(this)}>2 All</button>
-        <DisplayMap geo={this.state.geoResponse} />
+        <DisplayMap geo={this.state.geoResponse} globe={this.props.globe} />
       </div>
     )
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import saveWifi from '../util/helper.js';
+import Map      from './Map.js';
 
 class DisplayMap extends Component{
   constructor(props){
@@ -30,7 +31,10 @@ class DisplayMap extends Component{
   }
 
 
+
+
   render(){
+    console.log("this.props.globe", this.props.globe);
     console.log("Array to pass in: this.props.geo", this.props.geo);
     return(
       <div>

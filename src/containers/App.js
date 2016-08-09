@@ -3,6 +3,8 @@ import Header                 from '../components/Header.js';
 import Footer                 from '../components/Footer.js';
 import Background             from '../components/Background.js';
 import Globe                  from '../components/Globe.js'
+import DisplayMap             from '../components/DisplayMap.js';
+
 import '../css/App.css';
 
 class App extends Component {
@@ -41,8 +43,8 @@ class App extends Component {
         <Background/>
         <Header/>
         <div className="home">
-          <h1>Where should I vote?!</h1>
-          <button className="voteButton" onClick={this.geoFindMe.bind(this)}>1 Find me the nearest voting booth</button>
+          <h1>Find me a hospital!</h1>
+          <button className="voteButton" onClick={this.geoFindMe.bind(this)}>1 Find me a hospital quick!</button>
           <Globe globe={this.state.globe}/>
         </div>
         <Footer>Rikki Rifka Rabinowitz 2016 All Rights Reserved.</Footer>

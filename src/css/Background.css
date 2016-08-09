@@ -1,8 +1,7 @@
 .back{
-  background: url("am-flag1.jpg");
+  background: url("banner.jpg");
   background-size:cover;
   background-repeat: no-repeat;
-  background-position: top 20% center;
   height: 40vh;
 }
 
